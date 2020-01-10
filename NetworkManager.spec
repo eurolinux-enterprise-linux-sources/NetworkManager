@@ -7,7 +7,8 @@
 %define glib2_version	2.16.0
 %define wireless_tools_version 1:28-0pre9
 %define libnl_version 1.1
-%define ppp_version 2.4.5
+
+%global ppp_version %(rpm -q ppp-devel >/dev/null && rpm -q --qf '%%{version}' ppp-devel || echo -n bad)
 
 %define snapshot .git20100811
 %define applet_snapshot .git20100811
@@ -17,7 +18,7 @@ Name: NetworkManager
 Summary: Network connection manager and user applications
 Epoch: 1
 Version: 0.8.1
-Release: 99%{?dist}
+Release: 107%{?dist}
 Group: System Environment/Base
 License: GPLv2+
 URL: http://www.gnome.org/projects/NetworkManager/
@@ -172,6 +173,22 @@ Patch149: rh1167491-editor-gateway-check.patch
 Patch150: rh1213327-nmcli-hang-fix.patch
 Patch151: rh1200131-dns-options.patch
 Patch152: rh1003877-bond-primary-option-fixes.patch
+Patch153: rh1213118-read-sysctl-d.patch
+Patch154: rh1254070-wifi-band-locking.patch
+Patch155: rh1258218-editor-vlan-id.patch
+Patch156: rh787733-hide-WPA-for-adhoc.patch
+Patch157: rh895591-wifi-no-secrets.patch
+Patch158: rh1212553-pkcs8-priv-keys.patch
+Patch159: rh1212553-editor-pkcs8-priv-keys.patch
+Patch160: rh1212553-editor-private-key.patch
+Patch161: rh951399-ignore-slave-devices-state.patch
+Patch162: rh1202539-dns-searches.patch
+Patch163: rh1286742-build-on-fedora.patch
+Patch164: rh1198325-ibft-port-iBFT-standalone-plugin.patch
+Patch165: rh1272617-ifcfg-rh-delay-deletions.patch
+Patch166: rh1292753-initscripts-ifcfg-bbv-fixes.patch
+Patch167: rh1292502-do-not-assume-bond-masters.patch
+Patch168: rh887771-translations.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -217,8 +234,8 @@ BuildRequires: libnl-devel >= %{libnl_version}
 BuildRequires: libnotify-devel >= 0.4
 BuildRequires: perl(XML::Parser)
 BuildRequires: automake autoconf intltool libtool
-BuildRequires: ppp = %{ppp_version}
-BuildRequires: ppp-devel = %{ppp_version}
+BuildRequires: ppp >= 2.4.5
+BuildRequires: ppp-devel >= 2.4.5
 BuildRequires: nss-devel >= 3.11.7
 BuildRequires: polkit-devel
 BuildRequires: dhclient
@@ -457,6 +474,31 @@ tar -xjf %{SOURCE1}
 %patch150 -p1 -b .rh1213327-nmcli-hang-fix
 %patch151 -p1 -b .rh1200131-dns-options
 %patch152 -p1 -b .rh1003877-bond-primary-option-fixes
+%patch153 -p1 -b .rh1213118-read-sysctl-d
+%patch154 -p1 -b .rh1254070-wifi-band-locking
+%patch155 -p1 -b .rh1258218-editor-vlan-id
+%patch156 -p1 -b .rh787733-hide-WPA-for-adhoc
+%patch157 -p1 -b .rh895591-wifi-no-secrets
+%patch158 -p1 -b .rh1212553-pkcs8-priv-keys
+%patch159 -p1 -b .rh1212553-editor-pkcs8-priv-keys
+%patch160 -p1 -b .rh1212553-editor-private-key
+%patch161 -p1 -b .rh951399-ignore-slave-devices-state
+%patch162 -p1 -b .rh1202539-dns-searches
+%patch163 -p1 -b .rh1286742-build-on-fedora
+%patch164 -p1 -b .rh1198325-ibft-port-iBFT-standalone-plugin
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-bad-dns1
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-bad-dns2
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-bad-entry
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-bad-gateway
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-bad-ipaddr
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-bad-record
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-dhcp
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-static
+chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-vlan
+%patch165 -p1 -b .rh1272617-ifcfg-rh-delay-deletions
+%patch166 -p1 -b .rh1292753-initscripts-ifcfg-bbv-fixes.orig
+%patch167 -p1 -b .rh1292502-do-not-assume-bond-masters.orig
+%patch168 -p1 -b .rh887771-translations.orig
 
 %build
 
@@ -471,7 +513,11 @@ autoreconf -i
 	--with-dhclient=yes \
 	--with-dhcpcd=no \
 	--with-crypto=nss \
+%if (0%{?fedora} && 0%{?fedora} >= 21)
 	--enable-more-warnings=yes \
+%else
+	--enable-more-warnings=error \
+%endif
 	--with-docs=yes \
 	--with-system-ca-path=/etc/pki/tls/certs \
 	--with-tests=yes \
@@ -495,7 +541,13 @@ make %{?_smp_mflags}
 pushd network-manager-applet-%{realversion}
 	autoreconf -i
 	intltoolize --force
-	%configure --disable-static --enable-more-warnings=yes
+	%configure \
+%if (0%{?fedora} && 0%{?fedora} >= 21)
+		--enable-more-warnings=yes \
+%else
+		--enable-more-warnings=error \
+%endif
+		--disable-static
 	make %{?_smp_mflags}
 popd
 
@@ -664,7 +716,9 @@ fi
 %dir %{_datadir}/gnome-vpn-properties
 %{_sysconfdir}/gconf/schemas/nm-applet.schemas
 %ifnarch s390 s390x
+%if !(0%{?fedora} && 0%{?fedora} >= 21)
 %{_libdir}/gnome-bluetooth/plugins/*
+%endif
 %endif
 
 %files glib
@@ -690,6 +744,39 @@ fi
 %{_datadir}/gtk-doc/html/libnm-util/*
 
 %changelog
+* Wed Mar 16 2016 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-107
+- wifi: move the Ad-Hoc WPA check to the correct place (rh #787733)
+
+* Sun Mar  6 2016 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-106
+- po: update translations (rh #887771)
+
+* Mon Jan 11 2016 Beniamino Galvani <bgalvani@redhat.com> - 1:0.8.1-105
+- ifcfg-rh: delay handling of deletion events (rh #1272617)
+- ifcfg-rh: load connections during GetIfcfgDetails avoiding ifup race (rh #1292753)
+- ifcfg-rh: leave bridge/bond/vlan to initscripts when support disabled (rh #1292753)
+- bond: avoid assuming connections on bond masters that are not up (rh #1292502)
+
+* Tue Dec  1 2015 Thomas Haller <thaller@redhat.com> - 1:0.8.1-104
+- core: ignore slave devices when deciding global state (rh #951399)
+- dns: don't override DHCP-supplied search order with domain (rh #1202539)
+- build: fix building source package on recent Fedora (rh #1286742)
+- ibft: add settings plugin (rh #1198325)
+
+* Thu Nov  5 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-103
+- libnm-util/editor: recognize PKCS#8 private keys and check passwords (rh #1212553)
+- wifi: show certificate files with the *.key extension (rh #1212553)
+
+* Wed Nov  4 2015 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-102
+- wifi: don't retry activation of connections with wrong secrets (rh #895591)
+
+* Mon Aug 31 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-101
+- wifi: support locking connections to a band (5GHz or 2GHz) (rh #1254070)
+- editor: allow VLAN id <0-4095> (rh #1258218)
+- wifi: disable Ad-Hoc WPA connections (rh #787733)
+
+* Tue Aug 18 2015 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-100
+- initscript: Make NetworkManager process /etc/sysctl.d/* (rh #1213118)
+
 * Fri May 22 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-99
 - editor: add bond 'primary' option (rh #1003877)
 
