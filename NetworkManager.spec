@@ -18,7 +18,7 @@ Name: NetworkManager
 Summary: Network connection manager and user applications
 Epoch: 1
 Version: 0.8.1
-Release: 107%{?dist}
+Release: 113%{?dist}
 Group: System Environment/Base
 License: GPLv2+
 URL: http://www.gnome.org/projects/NetworkManager/
@@ -189,6 +189,13 @@ Patch165: rh1272617-ifcfg-rh-delay-deletions.patch
 Patch166: rh1292753-initscripts-ifcfg-bbv-fixes.patch
 Patch167: rh1292502-do-not-assume-bond-masters.patch
 Patch168: rh887771-translations.patch
+Patch169: rh1308730-dns-none.patch
+Patch170: rh1331314-core-downgrade-unknown-driver-warning.patch
+Patch171: rh1353033-infiniband-compare-mac.patch
+Patch172: rh1321723-translations.patch
+Patch173: rh1321723-translations-fixup.patch
+Patch174: rh1261893-ibft-trickery.patch
+Patch175: rh1412388-ui-semicolon-text.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -499,6 +506,13 @@ chmod +x system-settings/plugins/ibft/tests/iscsiadm-test-vlan
 %patch166 -p1 -b .rh1292753-initscripts-ifcfg-bbv-fixes.orig
 %patch167 -p1 -b .rh1292502-do-not-assume-bond-masters.orig
 %patch168 -p1 -b .rh887771-translations.orig
+%patch169 -p1 -b .rh1308730-dns-none.orig
+%patch170 -p1 -b .rh1331314-core-downgrade-unknown-driver-warning.orig
+%patch171 -p1 -b .rh1353033-infiniband-compare-mac.orig
+%patch172 -p1 -b .rh1321723-translations.orig
+%patch173 -p1 -b .rh1321723-translations-fixup.orig
+%patch174 -p1 -b .rh1261893-ibft-trickery.orig
+%patch175 -p1 -b .rh1412388-ui-semicolon-text.orig
 
 %build
 
@@ -744,6 +758,27 @@ fi
 %{_datadir}/gtk-doc/html/libnm-util/*
 
 %changelog
+* Thu Jan 12 2017 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-113
+- ibft: don't break down when a dynamic connection without address (rh #1261893)
+
+* Thu Jan 12 2017 Thomas Haller <thaller@redhat.com> - 1:0.8.1-112
+- po: fix invalid texts in UI containing trailing semicolon (rh #1412388)
+
+* Mon Dec 19 2016 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-111
+- ibft: rework the connection matching to use addressing data (rh #1261893)
+
+* Thu Dec 15 2016 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-110
+- ibft: always commit the initial configuration right away (rh #1261893)
+
+* Mon Dec 12 2016 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-109
+- ibft: avoid deconfiguring ibft-managed interfaces on startup (rh #1261893)
+
+* Thu Oct 13 2016 Beniamino Galvani <bgalvani@redhat.com> - 1:0.8.1-108
+- dns: added new dns=none option to disable updating of resolv.conf (rh #1308730)
+- core: downgrade message level for unknown device driver (rh #1331314)
+- infiniband: compare only last 8 octects for MAC address (rh #1353033)
+- po: update translation (rh #1321723)
+
 * Wed Mar 16 2016 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-107
 - wifi: move the Ad-Hoc WPA check to the correct place (rh #787733)
 
