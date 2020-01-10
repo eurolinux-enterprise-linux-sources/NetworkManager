@@ -7517,3 +7517,70 @@ index f165101..8d8208b 100644
 -- 
 1.7.1
 
+From f09e33e6f831bdaf2864016fdf91251c96240f6e Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Tue, 3 Mar 2015 15:06:25 +0100
+Subject: [PATCH] manager: parse NM_BOND_BRIDGE_VLAN_ENABLED correctly
+
+Previously #NM_BOND_BRIDGE_VLAN_ENABLED=yes line would match too.
+---
+ src/nm-manager.c | 27 +++++++++++++++++++++------
+ 1 file changed, 21 insertions(+), 6 deletions(-)
+
+diff --git a/src/nm-manager.c b/src/nm-manager.c
+index ddf0fc3..56dead5 100644
+--- a/src/nm-manager.c
++++ b/src/nm-manager.c
+@@ -23,6 +23,7 @@
+ #include <netinet/ether.h>
+ #include <string.h>
+ #include <strings.h>
++#include <ctype.h>
+ #include <dbus/dbus-glib-lowlevel.h>
+ #include <dbus/dbus-glib.h>
+ #include <sys/types.h>
+@@ -5621,21 +5622,35 @@ nm_manager_init (NMManager *manager)
+ #define BV_ENABLED_KEY "NM_BOND_VLAN_ENABLED"
+ #define BBV_ENABLED_KEY "NM_BOND_BRIDGE_VLAN_ENABLED"
+ 	if (g_file_get_contents (SYSCONFDIR "/sysconfig/network", &contents, NULL, NULL) && contents) {
+-		p = strcasestr (contents, BV_ENABLED_KEY);
+-		if (p)
++		for (p = contents; p; p = strcasestr (p, BV_ENABLED_KEY)) {
++			if (p != contents && !isspace(*(p-1))) {
++				p++;
++				continue;
++			}
+ 			p += strlen (BV_ENABLED_KEY);
+-		else {
+-			p = strcasestr (contents, BBV_ENABLED_KEY);
+-			if (p)
++			if (*p++ == '=')
++				break;
++		}
++
++		if (!p) {
++			for (p = contents; p; p = strcasestr (p, BBV_ENABLED_KEY)) {
++				if (p != contents && !isspace(*(p-1))) {
++					p++;
++					continue;
++				}
+ 				p += strlen (BBV_ENABLED_KEY);
++				if (*p++ == '=')
++					break;
++			}
+ 		}
+ 
+-		if (p && *p++ == '=') {
++		if (p) {
+ 			if (   strcasecmp (p, "yes") == 0
+ 			    || strcasestr (p, "y")
+ 			    || strcasestr (p, "true"))
+ 				priv->bbv_enabled = TRUE;
+ 		}
++
+ 		g_free (contents);
+ 	}
+ 	nm_log_info (LOGD_HW, "Bonding/Bridging/VLAN support %s", priv->bbv_enabled ? "enabled" : "disabled");
+-- 
+2.1.0
+

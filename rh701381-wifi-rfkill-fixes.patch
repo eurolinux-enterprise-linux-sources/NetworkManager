@@ -232,7 +232,7 @@ index ddf0fc3..d25a6f9 100644
 +#include <errno.h>
  #include <string.h>
  #include <strings.h>
- #include <dbus/dbus-glib-lowlevel.h>
+ #include <ctype.h>
 @@ -151,6 +154,8 @@ static NMDevice *nm_manager_get_device_by_udi (NMManager *manager, const char *u
  
  static NMConnection *get_connection_by_uuid (NMManager *self, const char *uuid);

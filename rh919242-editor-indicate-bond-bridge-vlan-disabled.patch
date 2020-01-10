@@ -259,3 +259,42 @@ index ddf0fc3..4f3cddf 100644
 -- 
 1.7.1
 
+From 074301b1607ae3598c190f86be7d7b238560b0e9 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Tue, 3 Mar 2015 12:43:06 +0100
+Subject: [PATCH] connection-editor: correct getting BondBridgeVlanEnabled
+
+o.fd.DBus.Properties.Get() returns a variant, not a boolean.
+---
+ .../src/connection-editor/nm-connection-editor.c   |   15 +++++++++------
+ 1 files changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c
+index 3a87c55..bedb18f 100644
+--- a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c
++++ b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c
+@@ -456,12 +456,15 @@ show_bbv_disabled_banner (NMConnection *connection)
+ 	                                   NM_DBUS_PATH,
+ 	                                   "org.freedesktop.DBus.Properties");
+ 	if (proxy) {
+-		dbus_g_proxy_call_with_timeout (proxy, "Get", 1000, NULL,
+-		                                G_TYPE_STRING, NM_DBUS_INTERFACE,
+-		                                G_TYPE_STRING, "BondBridgeVlanEnabled",
+-		                                G_TYPE_INVALID,
+-		                                G_TYPE_BOOLEAN, &enabled,
+-		                                G_TYPE_INVALID);
++		GValue value = {0,};
++
++		if (dbus_g_proxy_call_with_timeout (proxy, "Get", 1000, NULL,
++		                                    G_TYPE_STRING, NM_DBUS_INTERFACE,
++		                                    G_TYPE_STRING, "BondBridgeVlanEnabled",
++		                                    G_TYPE_INVALID,
++		                                    G_TYPE_VALUE, &value,
++		                                    G_TYPE_INVALID))
++			enabled = g_value_get_boolean (&value);
+ 		g_object_unref (proxy);
+ 	}
+ 
+-- 
+1.7.1
+

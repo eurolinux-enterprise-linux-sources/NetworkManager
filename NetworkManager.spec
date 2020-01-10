@@ -17,7 +17,7 @@ Name: NetworkManager
 Summary: Network connection manager and user applications
 Epoch: 1
 Version: 0.8.1
-Release: 75%{?dist}
+Release: 99%{?dist}
 Group: System Environment/Base
 License: GPLv2+
 URL: http://www.gnome.org/projects/NetworkManager/
@@ -134,6 +134,44 @@ Patch111: 0111-fix-make-check-failure.patch
 Patch112: rh1025009-wol.patch
 Patch113: rh1112505-applet-fix-ifname-display.patch
 Patch114: rh1113996-ifcfg-rh-writer-ip4-fix.patch
+Patch115: rh1111672-ifcfg-rh-routes-no-gateway.patch
+Patch116: rh1111664-dbus-add-connection-return.patch
+Patch117: rh1135017-ifcfgrh-bridge-stp-read-fix.patch
+Patch118: rh902820-editor-bridge-support.patch
+Patch119: rh902820-ifcfg-rh-fix-reading-VLAN-as-bond-slaves.patch
+Patch120: rh1059698-legacy-slave-compat.patch
+Patch121: rh979181-NM_CONTROLLED-by-ifname.patch
+Patch122: rh1076169-ip6-unsolicited-RA-flags.patch
+Patch123: rh1085015-applet-translations.patch
+Patch124: rh1156564-gconf-connection-type.patch
+Patch125: rh1156564-ethernet-without-wired.patch
+Patch126: rh1102642-ifcfg-rh-trailing-spaces.patch
+Patch127: rh1181207-fix-assert-on-slave-changes.patch
+Patch128: rh1056790-arping.patch
+Patch129: rh1173245-editor-always-ask-system-cons.patch
+Patch130: rh1046074-bridge-multicast-snooping.patch
+Patch131: rh1046074-bridge-multicast-snooping-editor.patch
+Patch132: rh905641-editor-IP-treeview-improvements.patch
+Patch133: rh962449-ipv6-link-local-dns-server.patch
+Patch134: rh1201412-editor-addr-route-navigation-fix.patch
+Patch135: rh1201416-editor-additional-error-validation-fix.patch
+Patch136: 0136-covescan-fix-1.patch
+Patch137: rh1063661-connection-added-signal.patch
+Patch138: rh1063661-create-devices-on-status-change.patch
+Patch139: rh1063661-allow-vlans-on-bonds-and-bridges.patch
+Patch140: rh1063661-finish-activation-without-l3-configuration.patch
+Patch141: rh1063661-allow-no-l3-configuration-for-non-ethernet.patch
+Patch142: rh1063661-editor-leave-system-connection-checkbox-enabled.patch
+Patch143: rh953131-applet-con-info-addresses.patch
+Patch144: rh1197154-ip6-require-link-local.patch
+Patch145: rh1157867-ifcfg-rh-alias-file-removing-fix.patch
+Patch146: rh896200-editor-mnemonic-collisions.patch
+Patch147: rh1069313-VPN-never-default.patch
+Patch148: rh1207599-check-duped-addresses.patch
+Patch149: rh1167491-editor-gateway-check.patch
+Patch150: rh1213327-nmcli-hang-fix.patch
+Patch151: rh1200131-dns-options.patch
+Patch152: rh1003877-bond-primary-option-fixes.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -148,6 +186,10 @@ Requires: wpa_supplicant >= 1:0.6.8-4
 Requires: libnl >= %{libnl_version}
 Requires: %{name}-glib = %{epoch}:%{version}-%{release}
 Requires: ppp = %{ppp_version}
+# No rp-pppoe on S390
+%ifnarch s390 s390x
+Requires: rp-pppoe
+%endif
 Requires: avahi-autoipd
 Requires: dnsmasq
 Requires: udev
@@ -377,6 +419,44 @@ tar -xjf %{SOURCE1}
 %patch112 -p1 -b .wol
 %patch113 -p1 -b .rh1112505-applet-fix-ifname-display
 %patch114 -p1 -b .rh1113996-ifcfg-rh-writer-ip4-fix
+%patch115 -p1 -b .rh1111672-ifcfg-rh-routes-no-gateway
+%patch116 -p1 -b .rh1111664-dbus-add-connection-return
+%patch117 -p1 -b .rh1135017-ifcfgrh-bridge-stp-read-fix
+%patch118 -p1 -b .rh902820-editor-bridge-support
+%patch119 -p1 -b .rh902820-ifcfg-rh-fix-reading-VLAN-as-bond-slaves
+%patch120 -p1 -b .rh1059698-legacy-slave-compat
+%patch121 -p1 -b .rh979181-NM_CONTROLLED-by-ifname
+%patch122 -p1 -b .rh1076169-ip6-unsolicited-RA-flags
+%patch123 -p1 -b .rh1085015-applet-translations
+%patch124 -p1 -b .rh1156564-gconf-connection-type
+%patch125 -p1 -b .rh1156564-ethernet-without-wired
+%patch126 -p1 -b .rh1102642-ifcfg-rh-trailing-spaces
+%patch127 -p1 -b .rh1181207-fix-assert-on-slave-changes
+%patch128 -p1 -b .rh1056790-arping
+%patch129 -p1 -b .rh1173245-editor-always-ask-system-cons
+%patch130 -p1 -b .rh1046074-bridge-multicast-snooping
+%patch131 -p1 -b .rh1046074-bridge-multicast-snooping-editor
+%patch132 -p1 -b .rh905641-editor-IP-treeview-improvements
+%patch133 -p1 -b .rh962449-ipv6-link-local-dns-server.orig
+%patch134 -p1 -b .rh1201412-editor-addr-route-navigation-fix
+%patch135 -p1 -b .rh1201416-editor-additional-error-validation-fix
+%patch136 -p1 -b .0136-covescan-fix-1
+%patch137 -p1 -b .rh1063661-connection-added-signal
+%patch138 -p1 -b .rh1063661-create-devices-on-status-change
+%patch139 -p1 -b .rh1063661-allow-vlans-on-bonds-and-bridges
+%patch140 -p1 -b .rh1063661-finish-activation-without-l3-configuration
+%patch141 -p1 -b .rh1063661-allow-no-l3-configuration-for-non-ethernet
+%patch142 -p1 -b .rh1063661-editor-leave-system-connection-checkbox-enabled
+%patch143 -p1 -b .rh953131-applet-con-info-addresses
+%patch144 -p1 -b .rh1197154-ip6-require-link-local
+%patch145 -p1 -b .rh1157867-ifcfg-rh-alias-file-removing-fix
+%patch146 -p1 -b .rh896200-editor-mnemonic-collisions
+%patch147 -p1 -b .rh1069313-VPN-never-default
+%patch148 -p1 -b .rh1207599-check-duped-addresses
+%patch149 -p1 -b .rh1167491-editor-gateway-check
+%patch150 -p1 -b .rh1213327-nmcli-hang-fix
+%patch151 -p1 -b .rh1200131-dns-options
+%patch152 -p1 -b .rh1003877-bond-primary-option-fixes
 
 %build
 
@@ -610,6 +690,99 @@ fi
 %{_datadir}/gtk-doc/html/libnm-util/*
 
 %changelog
+* Fri May 22 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-99
+- editor: add bond 'primary' option (rh #1003877)
+
+* Thu May 14 2015 Beniamino Galvani <bgalvani@redhat.com> - 1:0.8.1-98
+- add support for DNS options (rh #1200131)
+
+* Mon Apr 13 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-97
+- vpn: let plugins forbid VPN connections from getting the default route (rh #1069313)
+- core: don't duplicate addresses (and other) info in IP configs (rh #1207599)
+- editor: check gateway to be in the network specified by addr/prefix (rh #1167491)
+- cli: fix 'nmcli con' hang if both NetworkManager and nm-applet are stopped (rh #1213327)
+
+* Wed Apr  8 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-96
+- ifcfg-rh: don't remove base connection if an alias file is removed (rh #1157867)
+- editor: fix mnemonic collisions (rh #896200)
+
+* Fri Apr  3 2015 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-95
+- ip6-manager: ensure we don't get past GOT_LINK_LOCAL if we don't have a link-local address (rh #1197154)
+
+* Mon Mar 30 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-94
+- editor: additional fix for navigation in address/route treeview (rh #1201412)
+
+* Wed Mar 25 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-93
+- applet: display all addresses in "Connection Information" dialog (rh #953131)
+
+* Wed Mar 18 2015 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-92
+- rh1063661-allow-no-l3-configuration-for-non-ethernet.patch: fix a use-after-free() (rh #1063661)
+
+* Wed Mar 18 2015 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-91
+- Add support for vlans over bonds and fix associated issues:
+- rh1113996-ifcfg-rh-writer-ip4-fix.patch: canonicalize paths (rh #1063661)
+- rh558983-bridging.patch: fix NM_BOND_BRIDGE_VLAN_ENABLED parsing (rh #1063661)
+- rh919242-editor-indicate-bond-bridge-vlan-disabled.patch: fix dbus call (rh #1063661)
+- system-settings: for non-ethernet devices, lacking BOOTPROTO implies no L3 configuration (rh #1063661)
+- device: allow vlans on bond and bridges (rh #1063661)
+- ifcfg-rh: always signal connection added when loading a connection (rh #1063661)
+- manager: try to create virtual devices on device state changes (rh #1063661)
+- connection-editor,vlan: don't disable the system connection checkbox if the connection is not valid (rh #1063661)
+- device: make the activation succeed if no L3 configuration is desired (rh #1063661)
+
+* Wed Mar 18 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-90
+- editor: improve navigation in address/route treeview (rh #1201412)
+- editor: fix on-the-fly color validation for 0.0.0.0/:: (rh #1201416)
+
+* Wed Mar 11 2015 Thomas Haller <thaller@redhat.com> - 1:0.8.1-89
+- dns: handle scope-id for IPv6 link-local dns servers (rh #962449)
+
+* Wed Mar  4 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-88
+- editor: improved IP/routes editing and error highlighting (rh #905641)
+
+* Mon Mar  2 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-87
+- editor: support bridge multicast_snooping option (rh #1046074)
+
+* Thu Feb 26 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-86
+- core: support bridge multicast_snooping option (rh #1046074)
+
+* Wed Feb 25 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-85
+- editor: disable "Ask for this password every time" for system connections (rh #1173245)
+
+* Fri Feb 20 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-84
+- device: send ARPs when configuring static IPv4 addresses (rh #1056790)
+
+* Thu Feb 19 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-83
+- device: do not crash on removing slave ifcfg files (rh #1181207)
+
+* Wed Jan 14 2015 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-82
+- ifcfg-rh: strip trailing whitespace from ifcfg files (rh #1102642)
+- Don't use rp-pppoe dependency on s390/s390x (rh #1181205)
+
+* Tue Jan 13 2015 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-81
+- libnm: avoid using incomplete connections from GConf (rh #1156564)
+- ethernet: don't crash on ethernet connections without wired settings (rh #1156564)
+
+* Mon Dec 15 2014 Dan Winship <danw@redhat.com> - 1:0.8.1-80
+- applet, connection-editor: updated translations (rh #1085015)
+
+* Fri Dec 05 2014 Lubomir Rintel <lrintel@redhat.com> - 1:0.8.1-79
+- ip6: Process RA flags from an unsolicited RA as well (rh #1076169)
+- Add a dependency on pppoe (rh #1159369)
+
+* Fri Nov 21 2014 Dan Winship <danw@redhat.com> - 1:0.8.1-78
+- ifcfg-rh: write bond slaves backward-compatibly with "ifup" (rh #1059698)
+- ifcfg-rh: allow marking configs NM_CONTROLLED=no by DEVICE (rh #979181)
+
+* Thu Aug 28 2014 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-77
+- ifcfg-rh: ensure missing STP property is interpreted as "off" (rh #1135017)
+- editor: enhance nm-connection-editor to support bridges (rh #902820)
+- ifcfg-rh: fix handling VLAN connections as bond/bridge slaves (rh #902820)
+
+* Mon Aug 25 2014 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-76
+- ifcfg-rh: allow missing and 0.0.0.0 GATEWAYn lines in ifcfg-routes (rh #1111672)
+- core: add AddConnectionReturn() method to system settings service (rh #1111664)
+
 * Mon Jun 30 2014 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-75
 - fcfg-rh: fix assertion on missing IP4 setting while writing connection (rh #1113996)
 

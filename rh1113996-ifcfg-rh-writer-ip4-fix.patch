@@ -73,3 +73,67 @@ index 75fbca6..cf1e266 100644
 -- 
 1.7.11.7
 
+From b650d7b0c3922b39cedc87b2eea9038d0f0b9b8d Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Wed, 4 Mar 2015 17:30:25 +0100
+Subject: [PATCH] Fix rh1113996-ifcfg-rh-writer-ip4-fix
+
+The ifcfg and ifcfg alias file paths don't have to be in canonical forms;
+notably they contain different numbers of directory separator slashes when
+running the test suite.
+
+Upstream version of the commit (73e011d0b67a198913e098ba7f5e246aa2dd21bf) gets
+this right. Copy the fix.
+---
+ system-settings/plugins/ifcfg-rh/writer.c |   14 +++++++-------
+ 1 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/system-settings/plugins/ifcfg-rh/writer.c b/system-settings/plugins/ifcfg-rh/writer.c
+index 3d59932..baea960 100644
+--- a/system-settings/plugins/ifcfg-rh/writer.c
++++ b/system-settings/plugins/ifcfg-rh/writer.c
+@@ -1694,8 +1694,8 @@ static void
+ write_ip4_aliases (NMConnection *connection, char *base_ifcfg_path)
+ {
+ 	NMSettingIP4Config *s_ip4;
+-	char *base_ifcfg_dir, *base_ifcfg_name;
+-	int i, num, base_ifcfg_path_len, base_ifcfg_name_len;
++	char *base_ifcfg_dir, *base_ifcfg_name, *base_name;
++	int i, num, base_ifcfg_path_len, base_ifcfg_name_len, base_name_len;
+ 	GDir *dir;
+ 
+ 	s_ip4 = (NMSettingIP4Config *) nm_connection_get_setting (connection, NM_TYPE_SETTING_IP4_CONFIG);
+@@ -1708,6 +1708,8 @@ write_ip4_aliases (NMConnection *connection, char *base_ifcfg_path)
+ 	base_ifcfg_dir = g_path_get_dirname (base_ifcfg_path);
+ 	base_ifcfg_name = g_path_get_basename (base_ifcfg_path);
+ 	base_ifcfg_name_len = strlen (base_ifcfg_name);
++        base_name = base_ifcfg_name + strlen (IFCFG_TAG);
++        base_name_len = strlen (base_name);
+ 
+ 	/* Remove all existing aliases for this file first */
+ 	dir = g_dir_open (base_ifcfg_dir, 0, NULL);
+@@ -1740,6 +1742,9 @@ write_ip4_aliases (NMConnection *connection, char *base_ifcfg_path)
+ 		label = nm_setting_ip4_config_get_address_label (s_ip4, i);
+ 		if (!label)
+ 			continue;
++		if (   strncmp (label, base_name, base_name_len) != 0
++		    || label[base_name_len] != ':')
++			continue;
+ 
+ 		for (p = label; *p; p++) {
+ 			if (!g_ascii_isalnum (*p) && *p != '_' && *p != ':')
+@@ -1749,11 +1754,6 @@ write_ip4_aliases (NMConnection *connection, char *base_ifcfg_path)
+ 			continue;
+ 
+ 		path = g_strdup_printf ("%s/" IFCFG_TAG "%s", base_ifcfg_dir, label);
+-		if (   strncmp (path, base_ifcfg_path, base_ifcfg_path_len) != 0
+-		    || path[base_ifcfg_path_len] != ':') {
+-			g_free (path);
+-			continue;
+-		}
+ 		ifcfg = svCreateFile (path);
+ 		g_free (path);
+ 
+-- 
+1.7.1
+
