@@ -1,7 +1,7 @@
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/po/POTFILES.in.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/po/POTFILES.in
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/po/POTFILES.in NetworkManager-0.8.1-b/network-manager-applet-0.8.1/po/POTFILES.in
 index cb26795..0d6f39b 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/po/POTFILES.in.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/po/POTFILES.in
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/po/POTFILES.in
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/po/POTFILES.in
 @@ -15,15 +15,15 @@ src/applet.c
  src/applet.glade
  src/applet.h
@@ -36,11 +36,11 @@ index cb26795..0d6f39b 100644
  src/connection-editor/nm-connection-list.c
  src/connection-editor/vpn-helpers.c
  src/gnome-bluetooth/bt-widget.c
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/Makefile.am.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/Makefile.am
-index 326c642..042e8e5 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/Makefile.am.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/Makefile.am
-@@ -4,6 +4,7 @@ nm_connection_editor_CPPFLAGS = \
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/Makefile.am NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/Makefile.am
+index 4cef9c0..71928c8 100644
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/Makefile.am
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/Makefile.am
+@@ -8,6 +8,7 @@ nm_connection_editor_CPPFLAGS = \
  	$(NMA_CFLAGS) \
  	-DICONDIR=\""$(datadir)/icons"\" \
  	-DGLADEDIR=\""$(gladedir)"\" \
@@ -48,7 +48,7 @@ index 326c642..042e8e5 100644
  	-DBINDIR=\""$(bindir)"\" \
  	-DSYSCONFDIR=\""$(sysconfdir)"\" \
  	-DLIBDIR=\""$(libdir)"\" \
-@@ -75,21 +76,23 @@ nm_connection_editor_LDADD = \
+@@ -74,21 +75,23 @@ nm_connection_editor_LDADD = \
  	-L${top_builddir}/../libnm-glib $(top_builddir)/../libnm-glib/libnm-glib-vpn.la
  
  gladedir = $(datadir)/nm-applet
@@ -85,10 +85,10 @@ index 326c642..042e8e5 100644
 -EXTRA_DIST = $(glade_DATA) nm-connection-editor-service.xml
 +EXTRA_DIST = $(ui_DATA) nm-connection-editor-service.xml
  
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.glade
 deleted file mode 100644
 index f0298ac..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.glade
 +++ /dev/null
 @@ -1,129 +0,0 @@
 -<?xml version="1.0"?>
@@ -220,11 +220,11 @@ index f0298ac..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.ui
 new file mode 100644
 index 0000000..e1cc185
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-dsl.ui
 @@ -0,0 +1,129 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -355,10 +355,10 @@ index 0000000..e1cc185
 +    </child>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.glade
 deleted file mode 100644
 index b40759c..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.glade
 +++ /dev/null
 @@ -1,503 +0,0 @@
 -<?xml version="1.0"?>
@@ -864,11 +864,11 @@ index b40759c..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.ui
 new file mode 100644
 index 0000000..eb03956
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip4.ui
 @@ -0,0 +1,530 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -1400,10 +1400,10 @@ index 0000000..eb03956
 +    </action-widgets>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.glade
 deleted file mode 100644
 index aa89f07..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.glade
 +++ /dev/null
 @@ -1,473 +0,0 @@
 -<?xml version="1.0"?>
@@ -1879,11 +1879,11 @@ index aa89f07..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.ui
 new file mode 100644
 index 0000000..eecd1dd
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ip6.ui
 @@ -0,0 +1,500 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -2385,10 +2385,10 @@ index 0000000..eecd1dd
 +    </action-widgets>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.glade
 deleted file mode 100644
 index 6eb3e01..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.glade
 +++ /dev/null
 @@ -1,373 +0,0 @@
 -<?xml version="1.0"?>
@@ -2764,11 +2764,11 @@ index 6eb3e01..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.ui
 new file mode 100644
 index 0000000..094c8a3
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-mobile.ui
 @@ -0,0 +1,398 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -3168,10 +3168,10 @@ index 0000000..094c8a3
 +    </child>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.glade
 deleted file mode 100644
 index 6b4c5b9..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.glade
 +++ /dev/null
 @@ -1,481 +0,0 @@
 -<?xml version="1.0"?>
@@ -3655,11 +3655,11 @@ index 6b4c5b9..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.ui
 new file mode 100644
 index 0000000..210749e
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-ppp.ui
 @@ -0,0 +1,483 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -4144,10 +4144,10 @@ index 0000000..210749e
 +    </action-widgets>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.glade
 deleted file mode 100644
 index 47dc568..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.glade
 +++ /dev/null
 @@ -1,221 +0,0 @@
 -<?xml version="1.0"?>
@@ -4371,11 +4371,11 @@ index 47dc568..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.ui
 new file mode 100644
 index 0000000..d671582
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wired.ui
 @@ -0,0 +1,277 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -4654,10 +4654,10 @@ index 0000000..d671582
 +    </child>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.glade
 deleted file mode 100644
 index d144d02..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.glade
 +++ /dev/null
 @@ -1,55 +0,0 @@
 -<?xml version="1.0"?>
@@ -4715,11 +4715,11 @@ index d144d02..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.ui
 new file mode 100644
 index 0000000..c961455
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless-security.ui
 @@ -0,0 +1,72 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -4793,10 +4793,10 @@ index 0000000..c961455
 +    </child>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.glade
 deleted file mode 100644
 index cda9787..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.glade
 +++ /dev/null
 @@ -1,376 +0,0 @@
 -<?xml version="1.0"?>
@@ -5175,11 +5175,11 @@ index cda9787..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.ui
 new file mode 100644
 index 0000000..a5b3bb4
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page-wireless.ui
 @@ -0,0 +1,440 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -5621,10 +5621,10 @@ index 0000000..a5b3bb4
 +    </child>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page.c
 index bcb90de..4180484 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page.c
 @@ -244,8 +244,8 @@ dispose (GObject *object)
  	if (self->page)
  		g_object_unref (self->page);
@@ -5636,10 +5636,10 @@ index bcb90de..4180484 100644
  
  	if (self->proxy)
  		g_object_unref (self->proxy);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page.h.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page.h
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page.h NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page.h
 index 08762e2..53c6ac5 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page.h.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-page.h
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-page.h
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-page.h
 @@ -27,7 +27,6 @@
  #include <glib-object.h>
  
@@ -5657,10 +5657,10 @@ index 08762e2..53c6ac5 100644
  	GtkWidget *page;
  	char *title;
  
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.glade
 deleted file mode 100644
 index ab1ccbe..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.glade
 +++ /dev/null
 @@ -1,144 +0,0 @@
 -<?xml version="1.0"?>
@@ -5807,11 +5807,11 @@ index ab1ccbe..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.ui
 new file mode 100644
 index 0000000..59fc3b8
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ce-vpn-wizard.ui
 @@ -0,0 +1,163 @@
 +<?xml version="1.0"?>
 +<interface>
@@ -5976,10 +5976,10 @@ index 0000000..59fc3b8
 +    </action-widgets>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ip4-routes-dialog.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ip4-routes-dialog.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ip4-routes-dialog.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ip4-routes-dialog.c
 index 20f1fe8..64c9d5f 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ip4-routes-dialog.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ip4-routes-dialog.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ip4-routes-dialog.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ip4-routes-dialog.c
 @@ -28,7 +28,6 @@
  #include <stdlib.h>
  #include <string.h>
@@ -6263,10 +6263,10 @@ index 20f1fe8..64c9d5f 100644
  	g_object_set (s_ip4, NM_SETTING_IP4_CONFIG_NEVER_DEFAULT,
  	              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)),
  	              NULL);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ip6-routes-dialog.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ip6-routes-dialog.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ip6-routes-dialog.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ip6-routes-dialog.c
 index 9470516..3798f69 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ip6-routes-dialog.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ip6-routes-dialog.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ip6-routes-dialog.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ip6-routes-dialog.c
 @@ -28,7 +28,6 @@
  #include <stdlib.h>
  #include <string.h>
@@ -6550,10 +6550,10 @@ index 9470516..3798f69 100644
  	g_object_set (s_ip6, NM_SETTING_IP6_CONFIG_NEVER_DEFAULT,
  	              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)),
  	              NULL);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c
 index 4bd2daa..88c4e1a 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.c
 @@ -115,7 +115,7 @@ ui_to_setting (NMConnectionEditor *editor)
  	s_con = NM_SETTING_CONNECTION (nm_connection_get_setting (editor->connection, NM_TYPE_SETTING_CONNECTION));
  	g_assert (s_con);
@@ -6705,10 +6705,10 @@ index 4bd2daa..88c4e1a 100644
  
  	/* Move the page from the initializing list to the main page list */
  	editor->initializing_pages = g_slist_remove (editor->initializing_pages, page);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.glade.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.glade
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.glade NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.glade
 deleted file mode 100644
 index 5988d70..0000000
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.glade
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.glade
 +++ /dev/null
 @@ -1,623 +0,0 @@
 -<?xml version="1.0"?>
@@ -7334,10 +7334,10 @@ index 5988d70..0000000
 -    </child>
 -  </widget>
 -</glade-interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.h.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.h
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.h NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.h
 index 4fe21e6..0612af0 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.h.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.h
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.h
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.h
 @@ -25,7 +25,6 @@
  #include "config.h"
  
@@ -7355,11 +7355,11 @@ index 4fe21e6..0612af0 100644
  	GtkWidget *window;
  	GtkWidget *ok_button;
  	GtkWidget *cancel_button;
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.ui.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.ui
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.ui NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.ui
 new file mode 100644
 index 0000000..b5966c4
 --- /dev/null
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.ui
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-editor.ui
 @@ -0,0 +1,679 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<interface>
@@ -8040,10 +8040,10 @@ index 0000000..b5966c4
 +    </child>
 +  </object>
 +</interface>
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.c
 index 05a1557..e549bb2 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.c
 @@ -1151,7 +1151,7 @@ add_connection_treeview (NMConnectionList *self, const char *prefix)
  	GtkTreeView *treeview;
  
@@ -8140,10 +8140,10 @@ index 05a1557..e549bb2 100644
  	for (i = 0; i < gtk_notebook_get_n_pages (notebook); i++) {
  		GtkWidget *child;
  		GType child_type;
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.h.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.h
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.h NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.h
 index c27317c..52954a2 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.h.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.h
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.h
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/nm-connection-list.h
 @@ -24,7 +24,6 @@
  #define NM_CONNECTION_LIST_H
  
@@ -8161,10 +8161,10 @@ index c27317c..52954a2 100644
  	GtkWidget *dialog;
  
  	GdkPixbuf *wired_icon;
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-dsl.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-dsl.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-dsl.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-dsl.c
 index 63519dc..d21f1ad 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-dsl.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-dsl.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-dsl.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-dsl.c
 @@ -52,13 +52,13 @@ static void
  dsl_private_init (CEPageDsl *self)
  {
@@ -8213,10 +8213,10 @@ index 63519dc..d21f1ad 100644
  	if (!parent->page) {
  		g_set_error (error, 0, 0, "%s", _("Could not load DSL user interface."));
  		g_object_unref (self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ip4.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ip4.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-ip4.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-ip4.c
 index 9c0f7f8..c758459 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ip4.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ip4.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-ip4.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-ip4.c
 @@ -107,13 +107,13 @@ static void
  ip4_private_init (CEPageIP4 *self, NMConnection *connection)
  {
@@ -8310,10 +8310,10 @@ index 9c0f7f8..c758459 100644
  	if (!parent->page) {
  		g_set_error (error, 0, 0, "%s", _("Could not load IPv4 user interface."));
  		g_object_unref (self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ip6.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ip6.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-ip6.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-ip6.c
 index cc9d95a..a2f769b 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ip6.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ip6.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-ip6.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-ip6.c
 @@ -105,14 +105,14 @@ static void
  ip6_private_init (CEPageIP6 *self, NMConnection *connection)
  {
@@ -8397,10 +8397,10 @@ index cc9d95a..a2f769b 100644
  	if (!parent->page) {
  		g_set_error (error, 0, 0, "%s", _("Could not load IPv6 user interface."));
  		g_object_unref (self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-mobile.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-mobile.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-mobile.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-mobile.c
 index f75086c..ccf2e59 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-mobile.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-mobile.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-mobile.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-mobile.c
 @@ -72,21 +72,21 @@ static void
  mobile_private_init (CEPageMobile *self)
  {
@@ -8474,10 +8474,10 @@ index f75086c..ccf2e59 100644
  	if (!parent->page) {
  		g_set_error (error, 0, 0, "%s", _("Could not load mobile broadband user interface."));
  		g_object_unref (self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ppp.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ppp.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-ppp.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-ppp.c
 index 0678c7d..91f3523 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ppp.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-ppp.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-ppp.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-ppp.c
 @@ -78,20 +78,20 @@ static void
  ppp_private_init (CEPagePpp *self)
  {
@@ -8530,10 +8530,10 @@ index 0678c7d..91f3523 100644
  	if (!parent->page) {
  		g_set_error (error, 0, 0, "%s", _("Could not load PPP user interface."));
  		g_object_unref (self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wired-security.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wired-security.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-wired-security.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-wired-security.c
 index 7a3c303..68d34df 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wired-security.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wired-security.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-wired-security.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-wired-security.c
 @@ -73,6 +73,7 @@ finish_setup (CEPageWiredSecurity *self, gpointer unused, GError *error, gpointe
  	CEPage *parent = CE_PAGE (self);
  	CEPageWiredSecurityPrivate *priv = CE_PAGE_WIRED_SECURITY_GET_PRIVATE (self);
@@ -8552,10 +8552,10 @@ index 7a3c303..68d34df 100644
  
  	gtk_toggle_button_set_active (priv->enabled, priv->initial_have_8021x);
  	g_signal_connect (priv->enabled, "toggled", G_CALLBACK (enable_toggled), self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wired.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wired.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-wired.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-wired.c
 index 91f38a3..31d83fd 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wired.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wired.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-wired.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-wired.c
 @@ -65,17 +65,17 @@ static void
  wired_private_init (CEPageWired *self)
  {
@@ -8629,10 +8629,10 @@ index 91f38a3..31d83fd 100644
  	if (!parent->page) {
  		g_set_error (error, 0, 0, "%s", _("Could not load wired user interface."));
  		g_object_unref (self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wireless-security.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wireless-security.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-wireless-security.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-wireless-security.c
 index d403cf6..ce9519e 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wireless-security.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wireless-security.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-wireless-security.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-wireless-security.c
 @@ -141,7 +141,7 @@ wireless_security_combo_changed (GtkComboBox *combo,
  	GList *elt, *children;
  	WirelessSecurity *sec;
@@ -8689,10 +8689,10 @@ index d403cf6..ce9519e 100644
  	if (!parent->page) {
  		g_set_error (error, 0, 0, "%s", _("Could not load WiFi security user interface."));
  		g_object_unref (self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wireless.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wireless.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-wireless.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-wireless.c
 index c2c395c..3ba41c0 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wireless.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/page-wireless.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/page-wireless.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/page-wireless.c
 @@ -61,31 +61,31 @@ static void
  wireless_private_init (CEPageWireless *self)
  {
@@ -8811,10 +8811,10 @@ index c2c395c..3ba41c0 100644
  	if (!parent->page) {
  		g_set_error (error, 0, 0, "%s", _("Could not load WiFi user interface."));
  		g_object_unref (self);
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ppp-auth-methods-dialog.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ppp-auth-methods-dialog.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ppp-auth-methods-dialog.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ppp-auth-methods-dialog.c
 index fe2020f..a6e4880 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ppp-auth-methods-dialog.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/ppp-auth-methods-dialog.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/ppp-auth-methods-dialog.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/ppp-auth-methods-dialog.c
 @@ -28,7 +28,6 @@
  #include <stdlib.h>
  #include <string.h>
@@ -8969,10 +8969,10 @@ index fe2020f..a6e4880 100644
  	*refuse_mschapv2 = !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
  }
  
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/vpn-helpers.c.gtkbuilder NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/vpn-helpers.c
+diff --git NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/vpn-helpers.c NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/vpn-helpers.c
 index a0313d7..bde55a0 100644
---- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/vpn-helpers.c.gtkbuilder
-+++ NetworkManager-0.8.1/network-manager-applet-0.8.1/src/connection-editor/vpn-helpers.c
+--- NetworkManager-0.8.1-a/network-manager-applet-0.8.1/src/connection-editor/vpn-helpers.c
++++ NetworkManager-0.8.1-b/network-manager-applet-0.8.1/src/connection-editor/vpn-helpers.c
 @@ -24,7 +24,6 @@
  #include <glib.h>
  #include <gmodule.h>

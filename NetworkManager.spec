@@ -17,7 +17,7 @@ Name: NetworkManager
 Summary: Network connection manager and user applications
 Epoch: 1
 Version: 0.8.1
-Release: 66%{?dist}
+Release: 75%{?dist}
 Group: System Environment/Base
 License: GPLv2+
 URL: http://www.gnome.org/projects/NetworkManager/
@@ -124,6 +124,16 @@ Patch101: rh1010501-vpn-fix.patch
 Patch102: rh1020310-fix-applet-editor-crash-addr-labels.patch
 Patch103: rh1021947-ifcfg-rh-fix-bond-slave-crash.patch
 Patch104: rh1021953-libnm-glib-device-VLAN-ID.patch
+Patch105: rh1000839-warnings.patch
+Patch106: rh1034860-pppoe-userland.patch
+Patch107: rh958365-log-states-textual.patch
+Patch108: rh1002138-say-adhoc.patch
+Patch109: rh678079-applet-indicate-no-VPN-plugin.patch
+Patch110: rh996566-gsm-validate-apn-whitespace.patch
+Patch111: 0111-fix-make-check-failure.patch
+Patch112: rh1025009-wol.patch
+Patch113: rh1112505-applet-fix-ifname-display.patch
+Patch114: rh1113996-ifcfg-rh-writer-ip4-fix.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -254,6 +264,15 @@ tar -xjf %{SOURCE1}
 %patch3 -p1 -b .no-notifications
 %patch4 -p1 -b .dbus-glib-no-legacy-props
 %patch10 -p1 -b .applet-mobile-status-later
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-mb-roam.png
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-tech-3g.png
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-tech-cdma-1x.png
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-tech-edge.png
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-tech-evdo.png
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-tech-gprs.png
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-tech-hspa.png
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-tech-umts.png
+%{__rm} -f ./network-manager-applet-0.8.1/icons/22/nm-wwan-tower.png
 %patch11 -p1 -b .ignore-hostname-localhost
 %patch12 -p1 -b .nm-translations
 %patch13 -p1 -b .applet-translations
@@ -348,6 +367,16 @@ tar -xjf %{SOURCE1}
 %patch102 -p1 -b .fix-applet-editor-addr-labels
 %patch103 -p1 -b .ifcfg-rh-fix-bond-slave-crash
 %patch104 -p1 -b .libnm-glib-device-VLAN-ID
+%patch105 -p1 -b .warnings
+%patch106 -p1 -b .pppoe-userland
+%patch107 -p1 -b .log-states-textual
+%patch108 -p1 -b .adhoc
+%patch109 -p1 -b .rh678079-applet-indicate-no-VPN-plugin
+%patch110 -p1 -b .0110-rh996566-gsm-validate-apn-whitespace.orig
+%patch111 -p1 -b .0111-fix-make-check-failure.orig
+%patch112 -p1 -b .wol
+%patch113 -p1 -b .rh1112505-applet-fix-ifname-display
+%patch114 -p1 -b .rh1113996-ifcfg-rh-writer-ip4-fix
 
 %build
 
@@ -581,6 +610,33 @@ fi
 %{_datadir}/gtk-doc/html/libnm-util/*
 
 %changelog
+* Mon Jun 30 2014 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-75
+- fcfg-rh: fix assertion on missing IP4 setting while writing connection (rh #1113996)
+
+* Tue Jun 24 2014 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-74
+- applet: display interface names with underscores correctly (rh #1112505)
+
+* Wed Jun 11 2014 Dan Winship <danw@redhat.com> - 1:0.8.1-73
+- core: don't take down Wake-on-LAN devices when suspending (rh #1025009)
+
+* Fri May 30 2014 Thomas Haller <thaller@redhat.com> - 1:0.8.1-72
+- core: validate GSM APN setting and remove spaces (rh #996566)
+
+* Wed May 28 2014 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-71
+- applet: don't offer VPN connections when no VPN plugin installed (rh #678079)
+
+* Mon May 19 2014 Dan Winship <danw@redhat.com> - 1:0.8.1-70
+- applet: clarify that created wireless networks are ad-hoc (rh #1002138)
+
+* Wed Apr 30 2014 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-69
+* core: log device/vpn states as codes and descriptive text (rh #958365)
+
+* Fri Apr  4 2014 Dan Winship <danw@redhat.com> - 1:0.8.1-68
+- ppp-manager: use userland pppoe (rh #1034860)
+
+* Thu Dec  5 2013 Dan Winship <danw@redhat.com> - 1:0.8.1-67
+- core: remove some spurious warnings (rh #1000839)
+
 * Tue Oct 22 2013 Jiří Klimeš <jklimes@redhat.com> - 1:0.8.1-66
 - libnm-glib: fix getting VLAN ID for NM clients (rh #1021953)
 
@@ -805,7 +861,7 @@ fi
 * Mon May  2 2011 Dan Williams <dcbw@redhat.com> - 0.8.1-9
 - applet: don't save passwords marked "always ask" (rh #692578)
 
-* Mon Apr  6 2011 Jiří Klimeš <jklimes@redhat.com> - 0.8.1-8
+* Wed Apr  6 2011 Jiří Klimeš <jklimes@redhat.com> - 0.8.1-8
 - applet: display IPv6 info under applet's 'Connection Information' (rh #634152)
 - applet,nm: fix translations (rh #589230)
 
@@ -910,7 +966,7 @@ fi
 - bluetooth: fix bad timeout on PAN connections (rh #586961)
 - applet: updated translations
 
-* Wed May  4 2010 Dan Williams <dcbw@redhat.com> - 0.8-12.git20100504
+* Wed May  5 2010 Dan Williams <dcbw@redhat.com> - 0.8-12.git20100504
 - core: treat missing IPv6 configuration as ignored (rh #588814)
 - core: don't flush IPv6 link-local routes (rh #587836)
 - cli: update output formatting
@@ -1414,7 +1470,7 @@ fi
 - Read global gateway from /etc/sysconfig/network if missing (rh #446527)
 - nm-system-settings now terminates when dbus goes away (rh #444976)
 
-* Tue May 14 2008 Dan Williams <dcbw@redhat.com> - 1:0.7.0-0.9.3.svn3669
+* Wed May 14 2008 Dan Williams <dcbw@redhat.com> - 1:0.7.0-0.9.3.svn3669
 - Fix initial carrier state detection on devices that are already up (rh #134886)
 
 * Tue May 13 2008 Dan Williams <dcbw@redhat.com> - 1:0.7.0-0.9.3.svn3667
@@ -1750,7 +1806,7 @@ fi
 * Mon Aug 13 2007 Christopher Aillon <caillon@redhat.com> 1:0.6.5-9
 - Update the license tag
 
-* Tue Aug  8 2007 Christopher Aillon <caillon@redhat.com> 1:0.6.5-8
+* Wed Aug  8 2007 Christopher Aillon <caillon@redhat.com> 1:0.6.5-8
 - Own /etc/NetworkManager/dispatcher.d and /etc/NetworkManager/VPN (#234004)
 
 * Wed Jun 27 2007 Dan Williams <dcbw@redhat.com> 1:0.6.5-7
@@ -2090,7 +2146,7 @@ fi
 * Mon Apr  4 2005 Dan Williams <dcbw@redhat.com> 0.4-6.cvs20050404
 - #rh153234# NetworkManager quits/cores just as a connection is made
 
-* Fri Apr  2 2005 Dan Williams <dcbw@redhat.com> 0.4-5.cvs20050402
+* Sat Apr  2 2005 Dan Williams <dcbw@redhat.com> 0.4-5.cvs20050402
 - Update from latest CVS HEAD
 
 * Fri Mar 25 2005 Christopher Aillon <caillon@redhat.com> 0.4-4.cvs20050315
@@ -2157,7 +2213,7 @@ fi
 * Mon Jan 24 2005 Than Ngo <than@redhat.com> 0.3.3-1.cvs20050112.4
 - rebuilt against new wireless tool
 
-* Thu Jan 21 2005 <dcbw@redhat.com> - 0.3.3-1.cvs20050118
+* Fri Jan 21 2005 <dcbw@redhat.com> - 0.3.3-1.cvs20050118
 - Fix issue where NM wouldn't recognize that access points were
 	encrypted, and then would try to connect without encryption
 - Refine packaging to put client library in separate package
@@ -2190,7 +2246,7 @@ fi
 - Better detection of non-ESSID-broadcasting access points
 - Don't dialog-spam the user if a connection fails
 
-* Mon Nov 11 2004 <dcbw@redhat.com> - 0.3.2-2.cvs20041115
+* Thu Nov 11 2004 <dcbw@redhat.com> - 0.3.2-2.cvs20041115
 - Update to CVS
 - Much better link detection, works with Open System authentication
 - Blacklist wireless cards rather than whitelisting them

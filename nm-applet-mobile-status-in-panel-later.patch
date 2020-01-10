@@ -27,42 +27,6 @@ index 3dd7143..a7f4df6 100644
  
  EXTRA_DIST = $(icon_DATA)
  
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-mb-roam.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-mb-roam.png
-deleted file mode 100644
-index 9d96555..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-mb-roam.png and /dev/null differ
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-3g.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-3g.png
-deleted file mode 100644
-index b998256..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-3g.png and /dev/null differ
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-cdma-1x.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-cdma-1x.png
-deleted file mode 100644
-index f70f77d..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-cdma-1x.png and /dev/null differ
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-edge.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-edge.png
-deleted file mode 100644
-index f1055a0..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-edge.png and /dev/null differ
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-evdo.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-evdo.png
-deleted file mode 100644
-index ec556ec..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-evdo.png and /dev/null differ
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-gprs.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-gprs.png
-deleted file mode 100644
-index b7dbac0..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-gprs.png and /dev/null differ
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-hspa.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-hspa.png
-deleted file mode 100644
-index 056a982..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-hspa.png and /dev/null differ
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-umts.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-umts.png
-deleted file mode 100644
-index 7bea37f..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-tech-umts.png and /dev/null differ
-diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-wwan-tower.png NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-wwan-tower.png
-deleted file mode 100644
-index 5e974bf..0000000
-Binary files NetworkManager-0.8.1/network-manager-applet-0.8.1/icons/22/nm-wwan-tower.png and /dev/null differ
 diff --git NetworkManager-0.8.1/network-manager-applet-0.8.1/src/applet-device-cdma.c NetworkManager-0.8.1/network-manager-applet-0.8.1/src/applet-device-cdma.c
 index f80034b..7f21ed2 100644
 --- NetworkManager-0.8.1/network-manager-applet-0.8.1/src/applet-device-cdma.c
